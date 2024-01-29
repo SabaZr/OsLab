@@ -3,7 +3,7 @@ import java.util.concurrent.RecursiveTask;
 
 public class Main {
 
-    // Sequential implementation
+
     public static int findMaxSequential(int[] array) {
         int max = array[0];
         for (int i = 1; i < array.length; i++) {
@@ -14,13 +14,13 @@ public class Main {
         return max;
     }
 
-    // Parallel implementation using ForkJoinPool
+    // ForkJoinPool
     public static int findMaxParallel(int[] array) {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         return forkJoinPool.invoke(new MaxTask(array, 0, array.length));
     }
 
-    // RecursiveTask to split the array and find max in parallel
+    // find max in parallel
     static class MaxTask extends RecursiveTask<Integer> {
         private final int[] array;
         private final int start;
